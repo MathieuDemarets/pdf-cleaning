@@ -238,8 +238,8 @@ def clean_pdf(input_dir, output_dir, predictions, thresholds=None, verbose=True)
                         print(f'   > no modifications for page {page}')
 
             # We save the cleaned pdf file
-            doc.save(output_dir + '/' +
-                     file.removesuffix('.pdf') + '_cleaned.pdf')
+            doc.save(
+                output_dir + '/' + file.removesuffix('.pdf') + '_cleaned.pdf')
         if verbose:
             print(f'> {file} cleaned')
 
@@ -332,27 +332,3 @@ def visualize_boxes(model_dir, dictionnary_dir, output_dir, file, conf=0.25, ver
         [pdf2jpg['SPLIT']+"/"+image for image in pdf2jpg['LINKS'][file]],
         conf=conf, save=True, project=output_dir+'/boxes',
         name=file.removesuffix('.pdf'), verbose=verbose)
-
-
-input_dir = 'input_pdf'
-output_dir = 'cleaned_pdf'
-split_dir = 'split_jpg'
-model_dir = 'cleaner_x.pt'
-dictionnary_dir = 'pdf_jpg.json'
-
-create_pdf2jpg(dictionnary_dir, input_dir, split_dir, verbose=False)
-init_pdf2jpg(dictionnary_dir, verbose=False)
-transform_pdf_to_jpg(dictionnary_dir)
-predictions = identify_chunks_to_clean(model_dir, dictionnary_dir, conf=0.25)
-clean_pdf(input_dir, output_dir, predictions, thresholds={
-    "figure": 0.55,
-    "table": 0.60,
-    "title": 0.4,
-    "header": 0.55,
-    "footnote": 0.175,
-    "reference": 0.50
-})
-# remove_split(dictionnary_dir, "all")
-
-visualize_boxes(model_dir, dictionnary_dir, output_dir,
-                "yolo_light.pdf", conf=0.25)
