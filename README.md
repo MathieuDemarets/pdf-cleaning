@@ -13,9 +13,9 @@ $ .venv\Scripts\activate
 $ pip install -r requirements.txt
 ```
 
-## Add the models in the models folder
+## Add the models
 
-If you have been given access to the models `cleaner_n.pt` and `cleaner_x.pt`, you can add them in the `models` folder.
+If you have been given access to the models `cleaner_n.pt` and `cleaner_x.pt`, you can add them in a folder called `models`.
 
 ## Run the script
 
