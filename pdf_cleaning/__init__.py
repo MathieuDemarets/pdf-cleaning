@@ -9,6 +9,5 @@ from .cleaning import (
     visualize_boxes
 )
 from .unzip import (
-    test,
     extract_label_zip
 )

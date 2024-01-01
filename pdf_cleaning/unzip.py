@@ -3,10 +3,6 @@ import os
 import shutil
 
 
-def test():
-    return "Hello World"
-
-
 def extract_label_zip(from_dir, to_dir, verbose=True):
     """Extract the labels from the zip files and move them to the chosen folder
 

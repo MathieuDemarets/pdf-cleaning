@@ -169,7 +169,7 @@ def identify_chunks_to_clean(model_dir, dictionnary_dir, conf=0.25, verbose=True
     return predictions
 
 
-def clean_pdf(input_dir, output_dir, predictions, thresholds=None, verbose=True):
+def clean_pdf(input_dir, output_dir, predictions, thresholds=0.5, verbose=True):
     """Clean the pdf files in the input directory based on the labels in the labels directory
 
     Parameters
@@ -179,9 +179,10 @@ def clean_pdf(input_dir, output_dir, predictions, thresholds=None, verbose=True)
     output_dir : str
         Path to the cleaned directory where the cleaned pdf files will be saved
     predictions : pd.DataFrame
-        All information about the chunks to clean
+        All information about the chunks to clean.
     thresholds : dict, optional
-        Thresholds for each class, by default 0.5 for all classes
+        Thresholds for each class, by default 0.5 for all classes. The threshold
+        can also be a dictionnary with the class as key and the threshold as value.
     verbose : bool, optional
         Print detail, by default True
 
@@ -191,12 +192,15 @@ def clean_pdf(input_dir, output_dir, predictions, thresholds=None, verbose=True)
         The input pdf files are cleaned and saved in the cleaned directory
     """
     # Default thresholds for each class
-    if thresholds is None:
-        thresholds = {
-            class_pred: 0.5 for class_pred in predictions.CLASS.unique().tolist()}
+    if type(thresholds) is float:
+        dict_trhesholds = {
+            class_pred: thresholds for class_pred in predictions.CLASS.unique().tolist()}
+        print(dict_trhesholds)
+    else:
+        dict_trhesholds = thresholds
 
     # Keep only the chunks with a confidence above the threshold
-    keep = [True if row['CONFIDENCE'] >= thresholds[row["CLASS"]] else
+    keep = [True if row['CONFIDENCE'] >= dict_trhesholds[row["CLASS"]] else
             False for _, row in predictions.iterrows()]
     predictions = predictions[keep]
 
@@ -267,9 +271,11 @@ def remove_split(dictionnary_dir, name, verbose=True, del_pdf=False):
     if name == "all":
         for image in os.listdir(pdf2jpg["SPLIT"]):
             os.remove(pdf2jpg["SPLIT"] + "/" + image)
+        os.rmdir(pdf2jpg["SPLIT"])
         if del_pdf:
             for pdf in os.listdir(pdf2jpg["INPUT"]):
                 os.remove(pdf2jpg["INPUT"] + "/" + pdf)
+            os.rmdir(pdf2jpg["INPUT"])
         del pdf2jpg["LINKS"]
     else:
         for image in pdf2jpg["LINKS"][name]:
