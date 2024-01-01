@@ -192,15 +192,17 @@ def clean_pdf(input_dir, output_dir, predictions, thresholds=0.5, verbose=True):
         The input pdf files are cleaned and saved in the cleaned directory
     """
     # Default thresholds for each class
-    if type(thresholds) is float:
-        dict_trhesholds = {
+    if isinstance(thresholds, float):
+        dict_thresholds = {
             class_pred: thresholds for class_pred in predictions.CLASS.unique().tolist()}
-        print(dict_trhesholds)
+        print(dict_thresholds)
+    elif isinstance(thresholds, dict):
+        dict_thresholds = thresholds
     else:
-        dict_trhesholds = thresholds
+        raise Exception("thresholds must be a float or a dict")
 
     # Keep only the chunks with a confidence above the threshold
-    keep = [True if row['CONFIDENCE'] >= dict_trhesholds[row["CLASS"]] else
+    keep = [True if row['CONFIDENCE'] >= dict_thresholds[row["CLASS"]] else
             False for _, row in predictions.iterrows()]
     predictions = predictions[keep]
 
