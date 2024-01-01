@@ -195,7 +195,6 @@ def clean_pdf(input_dir, output_dir, predictions, thresholds=0.5, verbose=True):
     if isinstance(thresholds, float):
         dict_thresholds = {
             class_pred: thresholds for class_pred in predictions.CLASS.unique().tolist()}
-        print(dict_thresholds)
     elif isinstance(thresholds, dict):
         dict_thresholds = thresholds
     else:
