@@ -12,9 +12,7 @@ To do so, we created a pipeline which transforms the pdf into images, then uses 
 
 <img src="https://raw.githubusercontent.com/MathieuDemarets/resources/main/computer_vision/Example.jpg" style="width: 100%;
 display: block;">
-<p style="text-align: center;">
-    <em>Example of a features identification</em>
-</p>
+*Example of a features identification*
 
 # Structure
 
