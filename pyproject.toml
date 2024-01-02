@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "pdf-cleaning"
+version = "0.1.0"
+description = "Remove non-essential text from pdf"
+authors = ["MathieuDemarets <74194884+MathieuDemarets@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.1.4"
+PyMuPDF = "^1.23.8"
+ultralytics = "^8.0.232"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
