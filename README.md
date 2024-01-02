@@ -10,7 +10,11 @@ The goal of this package is to prepare document for text analysis. The idea is t
 
 To do so, we created a pipeline which transforms the pdf into images, then uses computer vision (`YOLOv8`) to detect the different elements mentionned above, and finally removes the non-essential text from the original pdf.
 
-![Example](example\cleaned_pdf\boxes\Example.jpg)
+<img src="https://raw.githubusercontent.com/MathieuDemarets/resources/main/computer_vision/Example.jpg" style="width: 100%;
+display: block;">
+<p style="text-align: center;">
+    <em>Example of a features identification</em>
+</p>
 
 # Structure
 
