@@ -30,12 +30,12 @@ $ python -m venv .venv
 $ .venv\Scripts\activate
 ```
 
-## Install dependencies
+## Install the package
 
-The dependencies are listed in the file `requirements.txt` and can be easily installed with the following command:
+The package has been build with poetry and can be installed with the following command:
 
 ```console
-$ pip install -r requirements.txt
+$ pip install pdf_cleaning@git+https://github.com/MathieuDemarets/pdf-cleaning
 ```
 
 ## Add the models
