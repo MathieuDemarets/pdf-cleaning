@@ -29,7 +29,8 @@ def extract_label_zip(from_dir, to_dir, verbose=True):
             # Keep only the txt files to extract and remove train.txt
             all_objects = zipObj.namelist()
             all_objects = [x for x in all_objects if x.endswith(".txt")]
-            all_objects.remove("train.txt")
+            if "train.txt" in all_objects:
+                all_objects.remove("train.txt")
             # Extract all the chosen files
             for object in all_objects:
                 zipObj.extract(object, to_dir)

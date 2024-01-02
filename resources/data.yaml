@@ -1,0 +1,17 @@
+path: "/content/drive/MyDrive/Masters 24/DeepLearning/DataSets/assignment" #root directory
+
+# Dataset configuration
+train: "train/images"  # Path to train images
+val: "valid/images"  # Path to validation images
+
+#classes
+names:
+ 0: footnote
+ 1: table
+ 2: figure
+ 3: header
+ 4: reference
+ 5: title
+
+#nc: 4
+#names: ['ball', 'goalkeeper', 'player', 'referee']
