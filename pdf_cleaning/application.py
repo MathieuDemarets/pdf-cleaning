@@ -24,6 +24,10 @@ def create_toc(predictions, output_dir, file, conf=0.5):
     predictions['PAGE_NUMBER'] = [
         page.split('.')[0].split('_')[-1] for page in predictions['PAGE']]
     predictions['PAGE_NUMBER'] = predictions['PAGE_NUMBER'].astype(int)
+    predictions["HALF"] = [
+        row['LEFT'] > predictions.RIGHT.max()/2*0.8 for _, row in predictions.iterrows()]
+    predictions = predictions.sort_values(
+        by=['PAGE', 'HALF', 'TOP'], ascending=True)
 
     # Create the table of contents
     output_path = f'{output_dir}/{file.split("/")[-1].split(".")[0]}_toc.txt'
@@ -42,8 +46,10 @@ def create_toc(predictions, output_dir, file, conf=0.5):
                     f.write(f"Page {page_num} ---------\n")
                     current_page_num = page_num
                 page = doc[page_num]
-                rect = fitz.Rect(title['LEFT'], title['TOP'],
-                                 title['RIGHT'], title['BOTTOM'])
-                text = page.get_textbox(rect)
+                rect = fitz.Rect(
+                    title['LEFT'], title['TOP'],
+                    title['RIGHT'], title['BOTTOM'])
+                # text = page.get_textbox(rect)
+                text = page.get_text("text", clip=rect)
                 clean_text = ' '.join(text.split())
                 f.write(clean_text+'\n')
