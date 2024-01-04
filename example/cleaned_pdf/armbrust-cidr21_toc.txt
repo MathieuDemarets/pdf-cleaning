@@ -2,25 +2,27 @@ Table of contents
 -----------------
 Page 0 ---------
 Lakehouse: A New Generation of Open Platforms that Unify Data Warehousing and Advanced Analytics
+Abstract
 1 Introduction
 
 Page 1 ---------
 2 Motivation: Data Warehousing Challenges
 
 Page 2 ---------
-3.1 Implementing a Lakehouse System
 3 The Lakehouse Architecture
+3.1 Implementing a Lakehouse System
 
 Page 3 ---------
 q 3.2 Metadata Layers for Data Managementi
 3.3 SQL Performance in a Lakehouse
 
 Page 5 ---------
-4 Research Questions and Implications
 3.4 Efficient Access for Advanced Analytics
+4 Research Questions and Implications
+Are there other ways to achieve the Lakehouse goals? One
 
 Page 6 ---------
-References
 5 Related Work
 6 Conclusion
 Acknowledgements
+References
